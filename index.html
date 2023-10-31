@@ -203,14 +203,15 @@
       		.replaceAll(">", "&gt;"),
 				}),
 			}).then((response) => {
-				response.json().then((responseData) => {
-                })
-                fetch("https://wedev-api.sky.pro/api/v1/dmitriev-denis/comments", {
+				return response.json();
+                then((responseData) => {
+                return fetch("https://wedev-api.sky.pro/api/v1/dmitriev-denis/comments", {
       method: "GET",
     }).then((response) => {
         return getFetchApi();
 			});		
     });
+})
 
         nameElement.value = '';
         textElement.value = '';
