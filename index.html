@@ -194,6 +194,7 @@
         fetch("https://wedev-api.sky.pro/api/v1/dmitriev-denis/comments", {
 				method: "POST",
 				body: JSON.stringify({
+                    forceError: true,
 					name: nameElement.value
 					.replaceAll("<", "&lt;")
       		.replaceAll(">", "&gt;"),
@@ -211,16 +212,32 @@
                     {
       method: "GET",
     }).then((response) => {
-        return getFetchApi();
-			});
-        		
-    });
-})
-
-        nameElement.value = '';
-        textElement.value = '';
-        buttonElement.disabled = true;
-
+				if (response.status === 400) {
+					preLoaderText.textContent = "";
+					throw new Error(alert("Имя и комментарий должны быть длиннее 3 символов"));
+				} else if (response.status === 500) {
+					preLoaderText.textContent = "";
+					throw new Error(alert("Сервер не отвечает. Попробуйте позже."));
+				} else {
+					nameElement.value = '';
+					textElement.value = '';
+					return getFetchApi();
+				}
+			})
+			.catch((error) => {
+				if (error == "TypeError: Failed to fetch") {
+					preLoaderText.textContent = "";
+					alert("Интернет не доступен. Попробуйте позже");
+				} else {
+					buttonElement.disabled = false;
+					console.warn(error);
+				}
+			})
+    .finally(() => {
+				buttonElement.disabled = false;
+			})
+        })
+    })
 
 </script>
 
