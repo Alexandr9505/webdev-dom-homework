@@ -51,7 +51,7 @@
         const commentsToAnswer = document.querySelectorAll('.comment');
         for (const commentToAnswer of commentsToAnswer) {
             commentToAnswer.addEventListener("click", () => {
-                textElement.value = `${commentToAnswer.dataset.text} \ n${commentToAnswer.dataset.username},\n`
+                textElement.value = `${commentToAnswer.dataset.text} \ n${commentToAnswer.dataset.username}, \ n`
             });
         }
     }
