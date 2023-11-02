@@ -187,10 +187,10 @@
 			.then((response) => {
 				if (response.status === 400) {
 					preLoaderText.textContent = "";
-					throw new Error(alert("Имя и комментарий должны быть более 3 символов"));
+					throw new Error("Короткое сообщение");
 				} else if (response.status === 500) {
 					preLoaderText.textContent = "";
-					throw new Error(alert("Сервер не отвечает. Попробуйте позже"));
+					throw new Error(alert("Ошибка сервера"));
 				} else {
 					nameElement.value = '';
 					textElement.value = '';
@@ -198,21 +198,24 @@
 				}
 			})
 			.catch((error) => {
-				if (error == "TypeError: Failed to fetch") {
-				if (error === "Failed to fetch") {
-					preLoaderText.textContent = "";
+                console.log(error);
+				if (error.message === "Короткое сообщение") {
+                    alert("Имя и комментарий должны быть длиннее 3 символов")
+                }
+
+                if (error === "Failed to fetch") {
+                    preLoaderText.textContent = "";
 					alert("Интернет не доступен, попробуйте позже");
-				} else {
-					console.warn(error);
-				}
-            }
-			})
+                } else {
+                    console.warn(error);
+                }
+            })
+        
 			.finally(() => {
 				buttonElement.disabled = false;
 			})
-	});
+        })
 
-    
 </script>
 
 
