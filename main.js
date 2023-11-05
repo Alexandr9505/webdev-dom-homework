@@ -1,15 +1,15 @@
-import { getApi, postApi } from "apiData.js";
-import { getCorrectDate } from "dateFunctions.js";
-import { renderData } from "renderData.js";
-import { checkForms } from "checkForms.js";
-import { sentComment } from "sentComment.js";
+import { getApi, postApi } from "./apiData.js";
+import { getCorrectDate } from "./dateFunction.js";
+import { renderData } from "./renderData.js";
+import { checkForms } from "./checkForms.js";
+import { sentComment } from "./sentComment.js";
 import {
 	nameElement,
 	textElement,
 	buttonElement,
 	ulElement,
 	preLoaderText
-} from "varibales.js";
+} from "./varibales.js";
 
 let commentsArray = [];
 
