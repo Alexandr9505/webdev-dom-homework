@@ -22,6 +22,15 @@ export const renderData = (ulElement, commentsArray) => {
     `})
 			.join(''));
 	}
+
+    const delay = (interval = 300) => {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve();
+			}, interval);
+		})
+	}
+    
 const likes = () => {
     const likeButtons = document.querySelectorAll('.like-button');
     for (const likeButton of likeButtons) {
@@ -49,4 +58,13 @@ const likes = () => {
 };
 renderComments();
 likes();
+};
+
+export const answerToComment = () => {
+    const commentsToAnswer = document.querySelectorAll('.comment');
+    for (const commentToAnswer of commentsToAnswer) {
+        commentToAnswer.addEventListener("click", () => {
+            textElement.value = `${commentToAnswer.dataset.text} \ n${commentToAnswer.dataset.username}, \ n`
+        });
+    }
 }
