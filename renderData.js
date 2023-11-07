@@ -1,3 +1,19 @@
+export const answerToComment = () => {
+    const commentsToAnswer = document.querySelectorAll('.comment');
+    for (const commentToAnswer of commentsToAnswer) {
+        commentToAnswer.addEventListener("click", () => {
+            textElement.value = `${commentToAnswer.dataset.text} / n${commentToAnswer.dataset.username}, / n`
+        });
+    }
+}
+
+export const commentsToAnswer = document.querySelectorAll('.comment');
+    for (const commentToAnswer of commentsToAnswer) {
+        commentToAnswer.addEventListener("click", () => {
+            textElement.value = `${commentToAnswer.dataset.text} / n${commentToAnswer.dataset.username}, / n`
+        });
+    }
+
 export const renderData = (ulElement, commentsArray) => {
 	const renderComments = () => {
 		return (ulElement.innerHTML = commentsArray
@@ -58,13 +74,6 @@ const likes = () => {
 };
 renderComments();
 likes();
+answerToComment();
+commentsToAnswer();
 };
-
-export const answerToComment = () => {
-    const commentsToAnswer = document.querySelectorAll('.comment');
-    for (const commentToAnswer of commentsToAnswer) {
-        commentToAnswer.addEventListener("click", () => {
-            textElement.value = `${commentToAnswer.dataset.text} \ n${commentToAnswer.dataset.username}, \ n`
-        });
-    }
-}
