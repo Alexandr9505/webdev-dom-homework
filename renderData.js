@@ -1,53 +1,26 @@
+import { ulElement } from "./varibales.js";
+
 export const answerToComment = () => {
+    const textElement = document.querySelector('.add-form-text')
     const commentsToAnswer = document.querySelectorAll('.comment');
-    for (const commentToAnswer of commentsToAnswer) {
-        commentToAnswer.addEventListener("click", () => {
-            textElement.value = `${commentToAnswer.dataset.text} / n${commentToAnswer.dataset.username}, / n`
+    const commentsToAnswerText = document.querySelectorAll('.comment-text');
+    const commentsToAnswerName = document.querySelectorAll('.comment-name');
+    commentsToAnswer.forEach((el, index) => {
+        el.addEventListener("click", () => {
+            textElement.value = `${commentsToAnswerText[index].textContent}  ${commentsToAnswerName[index].textContent}`
         });
-    }
+    })
 }
 
-export const commentsToAnswer = document.querySelectorAll('.comment');
-    for (const commentToAnswer of commentsToAnswer) {
-        commentToAnswer.addEventListener("click", () => {
-            textElement.value = `${commentToAnswer.dataset.text} / n${commentToAnswer.dataset.username}, / n`
-        });
-    }
+const delay = (interval = 300) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, interval);
+    })
+}
 
-export const renderData = (ulElement, commentsArray) => {
-	const renderComments = () => {
-		return (ulElement.innerHTML = commentsArray
-			.map((item, index) => {
-				return ` <li class="comment">
-          <div class="comment-header">
-            <div>${item.author}</div>
-            <div>${item.date}</div>
-          </div>
-          <div class="comment-body">
-            <div class="comment-text">
-              ${item.text}
-            </div>
-          </div>
-          <div class="comment-footer">
-            <div class="likes">
-              <span class="likes-counter">${item.likes}</span>
-              <button data-index='${index}' class="like-button ${item.paint}"</button>
-            </div>
-          </div>
-        </li>
-    `})
-			.join(''));
-	}
-
-    const delay = (interval = 300) => {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, interval);
-		})
-	}
-    
-const likes = () => {
+const likes = (commentsArray) => {
     const likeButtons = document.querySelectorAll('.like-button');
     for (const likeButton of likeButtons) {
         likeButton.addEventListener('click', (event) => {
@@ -66,14 +39,39 @@ const likes = () => {
                         commentsArray[index].likes -= 1;
                         commentsArray[index].isLiked = false;
                     }
-                    renderComments();
+                    renderData(commentsArray);
                     likes();
                 })
         });
     };
 };
+
+export const renderData = (commentsArray) => {
+  const renderComments = () => {
+    return (ulElement.innerHTML = commentsArray
+      .map((item, index) => {
+        return ` <li class="comment">
+          <div class="comment-header">
+            <div class='comment-name'>${item.author}</div>
+            <div>${item.date}</div>
+          </div>
+          <div class="comment-body">
+            <div class="comment-text">
+              ${item.text}
+            </div>
+          </div>
+          <div class="comment-footer">
+            <div class="likes">
+              <span class="likes-counter">${item.likes}</span>
+              <button data-index='${index}' class="like-button ${item.paint}"</button>
+            </div>
+          </div>
+        </li>
+    `})
+      .join(''));
+  }
+    
 renderComments();
-likes();
+likes(commentsArray);
 answerToComment();
-commentsToAnswer();
 };

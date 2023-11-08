@@ -27,7 +27,7 @@ const getFetchApi = () => {
 				};
 			});
 			commentsArray = getApiComments;
-			renderData(ulElement, commentsArray)
+			renderData(commentsArray)
 		})
 		.then((response) => {
 			preLoaderText.textContent = "";
