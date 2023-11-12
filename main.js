@@ -7,9 +7,9 @@ import {
 	nameElement,
 	textElement,
 	buttonElement,
-	ulElement,
 	preLoaderText
 } from "./varibales.js";
+import { sentComment } from "./modules/sentComment.js";
 
 let commentsArray = [];
 
@@ -74,3 +74,31 @@ buttonElement.addEventListener('click', () => {
             buttonElement.disabled = false;
         })
     })
+
+	const sendFormAuth = () => {
+		renderHtmlAuth();
+		const loginInputElement = document.getElementById("login");
+		const passwordInputElement = document.getElementById("password");
+		const buttonElementlogin = document.getElementById("buttonLogin");
+	
+		buttonElementlogin.addEventListener("click", () => {
+			loginUser({ loginInputElement, passwordInputElement }).then((responseData) => {
+				alert('Авторизация прошла успешно');
+				setToken(responseData.user.token);
+				setNameUser(responseData.user.name);
+				console.log(token);
+			}).then(() => {
+				ulElement.style.display = "flex";
+				document.getElementById("app").remove();
+				sendFormComments()
+				getFetchApi();
+			});
+		});
+	}
+	
+	const loginLink = document.getElementById("authorization");
+	loginLink.addEventListener("click", () => {
+		sendFormAuth();
+		ulElement.style.display = "none";
+		document.getElementById("authorization").remove();
+	})	
