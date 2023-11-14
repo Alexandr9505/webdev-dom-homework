@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
 	<div id="app"></div>
 </body>
 <script>
@@ -16,7 +15,7 @@
 	const hostApiAuth = 'https://wedev-api.sky.pro/api/user/login';
 	const loginInputElement = document.getElementById("login");
 	const passwordInputElement = document.getElementById("password");
-	const buttonElementlogin = document.getElementById("buttonLogin");
+	const buttonElement = document.getElementById("buttonLogin");
 
 	const loginUser = () => {
 		return fetch(hostApiAuth, {
@@ -30,7 +29,7 @@
 		})
 	}
 
-	buttonElementlogin.addEventListener("click", () => {
+	buttonElement.addEventListener("click", () => {
 		loginUser().then((responseData) => {
 			setToken(responseData.user.token)
 			console.log(token);

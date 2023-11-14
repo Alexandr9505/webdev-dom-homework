@@ -1,5 +1,5 @@
 import {
-	hostApiAuth,
+	hostApiAuth
 } from "./varibales.js";
 import { token, } from "./renderData.js";
 

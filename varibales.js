@@ -9,6 +9,6 @@ const hostApiAuth = 'https://wedev-api.sky.pro/api/user/login';
 export {nameElement, 
 	textElement, 
 	buttonElement,
-	 ulElement, preLoaderText, 
-	 loginElement, 
+	 ulElement, preLoaderText,
+	 hostApiAuth 
 	 }

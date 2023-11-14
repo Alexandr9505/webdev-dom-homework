@@ -3,13 +3,7 @@ import { getCorrectDate } from "./dateFunction.js";
 import { renderData } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
-import {
-	nameElement,
-	textElement,
-	buttonElement,
-	preLoaderText
-} from "./varibales.js";
-import { sentComment } from "./modules/sentComment.js";
+import { preLoaderText } from "./varibales.js";
 
 let commentsArray = [];
 
@@ -37,7 +31,11 @@ const getFetchApi = () => {
 
 getFetchApi();
 
-checkForms(buttonElement, textElement, nameElement);
+const sendFormComments = () => {
+	renderHtmlFormComments();
+	const nameElement = document.getElementById("inputName");
+	const textElement = document.getElementById("inputText");
+	const buttonElement = document.getElementById("buttonPush");
 
 buttonElement.addEventListener('click', () => {
 	//Отправляю комментарий
@@ -73,15 +71,16 @@ buttonElement.addEventListener('click', () => {
         .finally(() => {
             buttonElement.disabled = false;
         })
-    })
+    });
+}
 
 	const sendFormAuth = () => {
 		renderHtmlAuth();
 		const loginInputElement = document.getElementById("login");
 		const passwordInputElement = document.getElementById("password");
-		const buttonElementlogin = document.getElementById("buttonLogin");
+		const buttonElement = document.getElementById("buttonLogin");
 	
-		buttonElementlogin.addEventListener("click", () => {
+		buttonElement.addEventListener("click", () => {
 			loginUser({ loginInputElement, passwordInputElement }).then((responseData) => {
 				alert('Авторизация прошла успешно');
 				setToken(responseData.user.token);
