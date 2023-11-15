@@ -1,9 +1,9 @@
-import { getApi, postApi } from "./apiData.js";
+import { getApi,postApi,loginUser } from "./apiData.js";
 import { getCorrectDate } from "./dateFunction.js";
 import { renderData, renderHtmlAuth, token, setToken, renderHtmlFormComments, setNameUser } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
-import { preLoaderText } from "./varibales.js";
+import { ulElement,preLoaderText } from "./varibales.js";
 
 let commentsArray = [];
 
