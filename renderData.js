@@ -75,3 +75,45 @@ renderComments();
 likes(commentsArray);
 answerToComment();
 };
+
+export const renderHtmlAuth = () => {
+	const appElement = document.getElementById('app');
+	const loginHtml = `
+		<div class="container">
+		<div class="add-form-login">
+			<input id="login" type="text" class="add-form-name-login" placeholder="Введите логин" value="admin" />
+			<input id="password" type="password" class="add-form-name-login" placeholder="Введите пароль" value="admin" />
+			<div class="add-form-row">
+				<button id="buttonLogin" class="add-form-button-login">Написать</button>
+			</div>
+		</div>
+	</div>
+		`;
+	appElement.innerHTML = loginHtml;
+
+}
+
+export const renderHtmlFormComments = () => {
+	const formElement = document.getElementById('form-comments');
+	const formHtml = `
+		<div class="add-form">
+		<input id="inputName" type="text" class="add-form-name" value="${nameUser}" readonly/>
+		<textarea id="inputText" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
+			rows="4"></textarea>
+		<div class="add-form-row">
+			<button id="buttonPush" class="add-form-button">Написать</button>
+		</div>
+		`
+	formElement.innerHTML = formHtml;
+	document.createElement("ul");
+}
+
+export let token;
+export const setToken = (newToken) => {
+	token = newToken;
+}
+
+export let nameUser;
+export const setNameUser = (newUser) => {
+	nameUser = newUser;
+}

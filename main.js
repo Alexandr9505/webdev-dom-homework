@@ -1,15 +1,9 @@
-import { getApi, postApi } from "./apiData.js";
+import { getApi,postApi,loginUser } from "./apiData.js";
 import { getCorrectDate } from "./dateFunction.js";
-import { renderData } from "./renderData.js";
+import { renderData, renderHtmlAuth, token, setToken, renderHtmlFormComments, setNameUser } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
-import {
-	nameElement,
-	textElement,
-	buttonElement,
-	ulElement,
-	preLoaderText
-} from "./varibales.js";
+import { ulElement,preLoaderText } from "./varibales.js";
 
 let commentsArray = [];
 
@@ -37,7 +31,11 @@ const getFetchApi = () => {
 
 getFetchApi();
 
-checkForms(buttonElement, textElement, nameElement);
+const sendFormComments = () => {
+	renderHtmlFormComments();
+	const nameElement = document.getElementById("inputName");
+	const textElement = document.getElementById("inputText");
+	const buttonElement = document.getElementById("buttonPush");
 
 buttonElement.addEventListener('click', () => {
 	//Отправляю комментарий
@@ -73,4 +71,33 @@ buttonElement.addEventListener('click', () => {
         .finally(() => {
             buttonElement.disabled = false;
         })
-    })
+    });
+}
+
+	const sendFormAuth = () => {
+		renderHtmlAuth();
+		const loginInputElement = document.getElementById("login");
+		const passwordInputElement = document.getElementById("password");
+		const buttonElement = document.getElementById("buttonLogin");
+	
+		buttonElement.addEventListener("click", () => {
+			loginUser({ loginInputElement, passwordInputElement }).then((responseData) => {
+				alert('Авторизация прошла успешно');
+				setToken(responseData.user.token);
+				setNameUser(responseData.user.name);
+				console.log(token);
+			}).then(() => {
+				ulElement.style.display = "flex";
+				document.getElementById("app").remove();
+				sendFormComments()
+				getFetchApi();
+			});
+		});
+	}
+	
+	const loginLink = document.getElementById("authorization");
+	loginLink.addEventListener("click", () => {
+		sendFormAuth();
+		ulElement.style.display = "none";
+		document.getElementById("authorization").remove();
+	})	
