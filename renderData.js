@@ -97,7 +97,7 @@ export const renderHtmlFormComments = () => {
 	const formElement = document.getElementById('form-comments');
 	const formHtml = `
 		<div class="add-form">
-		<input id="inputName" type="text" class="add-form-name" placeholder="${nameUser}" readonly/>
+		<input id="inputName" type="text" class="add-form-name" value="${nameUser}" readonly/>
 		<textarea id="inputText" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
 			rows="4"></textarea>
 		<div class="add-form-row">
