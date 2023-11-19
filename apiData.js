@@ -40,10 +40,9 @@ export const loginUser = ({ loginInputElement, passwordInputElement }) => {
 			login: loginInputElement.value,
 			password: passwordInputElement.value,
 		})
-	}).then((response, event) => {
+	}).then((response) => {
 		if (response.status === 400) {
 			alert("Передан неправильный логин или пароль");
-			event.stopPropagation();
 		} else {
 			return response.json();
 		}

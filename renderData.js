@@ -101,7 +101,7 @@ export const renderHtmlFormComments = () => {
 		<textarea id="inputText" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
 			rows="4"></textarea>
 		<div class="add-form-row">
-			<button id="buttonPush" class="add-form-button">Написать</button>
+			<button id="buttonPush" class="add-form-button">Вход</button>
 		</div>
 		`
 	formElement.innerHTML = formHtml;

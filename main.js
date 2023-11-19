@@ -3,6 +3,7 @@ import { getCorrectDate } from "./dateFunction.js";
 import { renderData, renderHtmlAuth, token, setToken, renderHtmlFormComments, setNameUser } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
+import { format } from 'date-fns';
 import { ulElement,preLoaderText } from "./varibales.js";
 
 let commentsArray = [];
@@ -14,7 +15,7 @@ const getFetchApi = () => {
 			const getApiComments = response.comments.map((comment) => {
 				return {
 					author: comment.author.name,
-					date: getCorrectDate(comment.date),
+					date: format(new Date(comment.date), "yyyy-MM-dd hh.mm.ss"),
 					likes: comment.likes,
 					isLiked: false,
 					text: comment.text,
