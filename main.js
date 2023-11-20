@@ -3,7 +3,7 @@ import { getCorrectDate } from "./dateFunction.js";
 import { renderData, renderHtmlAuth, token, setToken, renderHtmlFormComments, setNameUser } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
-import { format } from "./package.json";
+import { format } from "date-fns";
 import { ulElement,preLoaderText } from "./varibales.js";
 
 let commentsArray = [];
