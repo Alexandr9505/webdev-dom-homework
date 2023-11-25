@@ -1,5 +1,4 @@
 import { getApi,postApi,loginUser } from "./apiData.js";
-import { getCorrectDate } from "./dateFunction.js";
 import { renderData, renderHtmlAuth, token, setToken, renderHtmlFormComments, setNameUser } from "./renderData.js";
 import { checkForms } from "./checkForms.js";
 import { sentComment } from "./sentComment.js";
@@ -14,7 +13,7 @@ const getFetchApi = () => {
 			const getApiComments = response.comments.map((comment) => {
 				return {
 					author: comment.author.name,
-					date: getCorrectDate(comment.date),
+					date: comment.date,
 					likes: comment.likes,
 					isLiked: false,
 					text: comment.text,
