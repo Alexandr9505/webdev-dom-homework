@@ -1,4 +1,5 @@
 import { ulElement } from "./varibales.js";
+import { format } from "date-fns";
 
 export const answerToComment = () => {
     const textElement = document.querySelector('.add-form-text')
@@ -53,7 +54,7 @@ export const renderData = (commentsArray) => {
         return ` <li class="comment">
           <div class="comment-header">
             <div class='comment-name'>${item.author}</div>
-            <div>${item.date}</div>
+            <div>${format(new Date(item.date),"yyyy-MM-dd hh.mm.ss")}</div>
           </div>
           <div class="comment-body">
             <div class="comment-text">
@@ -84,7 +85,7 @@ export const renderHtmlAuth = () => {
 			<input id="login" type="text" class="add-form-name-login" placeholder="Введите логин" value="admin" />
 			<input id="password" type="password" class="add-form-name-login" placeholder="Введите пароль" value="admin" />
 			<div class="add-form-row">
-				<button id="buttonLogin" class="add-form-button-login">Написать</button>
+				<button id="buttonLogin" class="add-form-button-login">Вход</button>
 			</div>
 		</div>
 	</div>
@@ -101,7 +102,7 @@ export const renderHtmlFormComments = () => {
 		<textarea id="inputText" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
 			rows="4"></textarea>
 		<div class="add-form-row">
-			<button id="buttonPush" class="add-form-button">Вход</button>
+			<button id="buttonPush" class="add-form-button">Написать</button>
 		</div>
 		`
 	formElement.innerHTML = formHtml;
